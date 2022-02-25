@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import Button from "./Components/Shared/Button";
+import Card from "./Components/Shared/Header";
+import Main from "./Components/Shared/Main/indes";
+
+import * as S from "./Home/styles";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <S.Container>
+      <Card title='Cadastrar novo aluno'>
+        <S.BoxInput>
+          <input placeholder='Nome' size={30} />
+          <input placeholder='Idade' size={5} />
+          <input placeholder='Nota' size={15} />
+          <input placeholder='Curso' size={25} />
+          <input placeholder='Status' size={25} />
+        </S.BoxInput>
+        <Button />
+      </Card>
+      <Main />
+    </S.Container>
   );
 }
 
