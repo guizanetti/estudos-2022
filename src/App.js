@@ -1,6 +1,7 @@
 import Button from "./Components/Shared/Button";
 import Card from "./Components/Shared/Header";
-import Main from "./Components/Shared/Main/indes";
+import Input from "./Components/Shared/Input";
+import Main from "./Components/Shared/Main/index";
 
 import * as S from "./Home/styles";
 
@@ -9,11 +10,11 @@ function App() {
     <S.Container>
       <Card title='Cadastrar novo aluno'>
         <S.BoxInput>
-          <input placeholder='Nome' size={30} />
-          <input placeholder='Idade' size={5} />
-          <input placeholder='Nota' size={15} />
-          <input placeholder='Curso' size={25} />
-          <input placeholder='Status' size={25} />
+          <Input placeholder='Nome' size={22} />
+          <Input placeholder='Idade' size={22} />
+          <Input placeholder='Nota' size={5} />
+          <Input placeholder='Curso' size={22} />
+          <Input placeholder='Status' size={22} />
         </S.BoxInput>
         <Button />
       </Card>

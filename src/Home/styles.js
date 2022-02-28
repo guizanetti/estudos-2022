@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100vw;
+  width: 80%;
   height: 100vh;
   background-color: #e5e5e5;
 `;
@@ -9,5 +9,5 @@ export const Container = styled.div`
 export const BoxInput = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
