@@ -7,4 +7,5 @@ export const Container = styled.input`
   border-radius: 8px;
   box-sizing: border-box;
   border: 1px solid #eeeeee;
+  outline: none;
 `;

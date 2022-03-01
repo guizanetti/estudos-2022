@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 80%;
-  height: 100vh;
-  background-color: #e5e5e5;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
 `;
 
 export const BoxInput = styled.div`

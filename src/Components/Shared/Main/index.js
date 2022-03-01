@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as S from "./styles";
 import { FiTrash2, FiEdit } from "react-icons/fi";
 
-const Main = () => {
+const Main = ({ data, setData }) => {
+  let NewArray = [];
+
+  const media = (nota, id) => {
+    const result = nota.reduce((prev, value) => prev + value, 0);
+    const total = Math.round(result / nota.length);
+    NewArray = data.listOfStudents?.map((i) => (i.id === id ? { ...i, media: total } : i));
+
+    return total;
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setData({
+        ...data,
+        listOfStudents: NewArray,
+      });
+    }, 1000);
+  }, []);
+
+  console.log(data);
+
   return (
     <S.Container>
       <S.Header>
@@ -27,75 +48,29 @@ const Main = () => {
         </S.BoxHeader>
       </S.Header>
       <S.WrapperSubtitle>
-        <S.Name>Nome</S.Name>
-        <S.Age>Idade</S.Age>
-        <S.Note>Nota</S.Note>
-        <S.Status>Status</S.Status>
-        <S.Course>Curso</S.Course>
-        <S.Action>Ações</S.Action>
+        <S.Subtitle>Nome</S.Subtitle>
+        <S.Subtitle width='16%'>Idade</S.Subtitle>
+        <S.Subtitle width='6%'>Nota</S.Subtitle>
+        <S.Subtitle width='16%'>Status</S.Subtitle>
+        <S.Subtitle width='16%'>Curso</S.Subtitle>
+        <S.Subtitle width='5%'>Ações</S.Subtitle>
       </S.WrapperSubtitle>
 
       <S.Separator />
-      <S.WrapperInfo>
-        <S.NameInfo>João Silva</S.NameInfo>
-        <S.AgeInfo>19 anos</S.AgeInfo>
-        <S.NoteInfo>8.5</S.NoteInfo>
-        <S.StatusInfo>Aprovado</S.StatusInfo>
-        <S.CourseInfo>Design</S.CourseInfo>
+      {data.listOfStudents?.map((item) => (
+        <S.WrapperInfo>
+          <S.Info>{item.name}</S.Info>
+          <S.Info width='16%'>18</S.Info>
+          <S.Info width='6%'>{media(item.score, item.id)}</S.Info>
+          <S.Info width='16%'>{item.approved}</S.Info>
+          <S.Info width='16%'>{item.course}</S.Info>
 
-        <S.ActionInfo>
-          <FiEdit size={20} />
-          <FiTrash2 size={20} />
-        </S.ActionInfo>
-      </S.WrapperInfo>
-      <S.WrapperInfo>
-        <S.NameInfo>João Silva</S.NameInfo>
-        <S.AgeInfo>19 anos</S.AgeInfo>
-        <S.NoteInfo>8.5</S.NoteInfo>
-        <S.StatusInfo>Aprovado</S.StatusInfo>
-        <S.CourseInfo>Design</S.CourseInfo>
-
-        <S.ActionInfo>
-          <FiEdit size={20} />
-          <FiTrash2 size={20} />
-        </S.ActionInfo>
-      </S.WrapperInfo>
-      <S.WrapperInfo>
-        <S.NameInfo>João Silva</S.NameInfo>
-        <S.AgeInfo>19 anos</S.AgeInfo>
-        <S.NoteInfo>8.5</S.NoteInfo>
-        <S.StatusInfo>Aprovado</S.StatusInfo>
-        <S.CourseInfo>Design</S.CourseInfo>
-
-        <S.ActionInfo>
-          <FiEdit size={20} />
-          <FiTrash2 size={20} />
-        </S.ActionInfo>
-      </S.WrapperInfo>
-      <S.WrapperInfo>
-        <S.NameInfo>João Silva</S.NameInfo>
-        <S.AgeInfo>19 anos</S.AgeInfo>
-        <S.NoteInfo>8.5</S.NoteInfo>
-        <S.StatusInfo>Aprovado</S.StatusInfo>
-        <S.CourseInfo>Design</S.CourseInfo>
-
-        <S.ActionInfo>
-          <FiEdit size={20} />
-          <FiTrash2 size={20} />
-        </S.ActionInfo>
-      </S.WrapperInfo>
-      <S.WrapperInfo>
-        <S.NameInfo>João Silva</S.NameInfo>
-        <S.AgeInfo>19 anos</S.AgeInfo>
-        <S.NoteInfo>8.5</S.NoteInfo>
-        <S.StatusInfo>Aprovado</S.StatusInfo>
-        <S.CourseInfo>Design</S.CourseInfo>
-
-        <S.ActionInfo>
-          <FiEdit size={20} />
-          <FiTrash2 size={20} />
-        </S.ActionInfo>
-      </S.WrapperInfo>
+          <S.ActionInfo>
+            <FiEdit size={20} />
+            <FiTrash2 size={20} />
+          </S.ActionInfo>
+        </S.WrapperInfo>
+      ))}
     </S.Container>
   );
 };

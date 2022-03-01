@@ -3,14 +3,14 @@ import styled, { css } from "styled-components";
 export const Container = styled.div`
   width: 100%;
   display: flex;
-  margin-top: 40px;
+  margin-top: 50px;
   justify-content: flex-end;
 `;
 
 export const BoxButton = styled.button`
   display: flex;
-  width: 142px;
-  height: 50px;
+  width: 15%;
+  padding: 1em 2em;
   border-radius: 8px;
   align-items: center;
   justify-content: center;
@@ -28,9 +28,7 @@ export const BoxButton = styled.button`
   }
 `;
 
-export const Clear = styled.text`
-  width: 51px;
-  height: 20px;
+export const Clear = styled.p`
   color: #01affa;
   font-size: 16px;
   font-weight: bold;
@@ -39,9 +37,7 @@ export const Clear = styled.text`
   font-family: Roboto;
 `;
 
-export const Add = styled.text`
-  width: 69px;
-  height: 19px;
+export const Add = styled.p`
   color: #fff;
   font-size: 16px;
   font-weight: bold;
