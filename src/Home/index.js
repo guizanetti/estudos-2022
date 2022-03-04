@@ -20,6 +20,7 @@ function Home({ array, setArray }) {
             onchange={(e) => setData({ ...data, name: e.target.value })}
           />
           <Input
+            type='date'
             placeholder='Idade'
             size={20}
             value={data.age}
@@ -37,14 +38,24 @@ function Home({ array, setArray }) {
             value={data.course}
             onchange={(e) => setData({ ...data, course: e.target.value })}
           />
-          <Input
-            placeholder='Status'
-            size={20}
-            value={data.status}
-            onchange={(e) => setData({ ...data, status: e.target.value })}
-          />
         </S.BoxInput>
-        <Button />
+        <Button
+          clear={() => {
+            setData({ name: "", age: "", note: "", course: "" });
+          }}
+          add={() => {
+            const format = {
+              id: Math.round(Math.random() * 1000),
+              name: data.name,
+              age: new Date(data.age),
+              score: data.note.split(",").map((i) => Number(i)),
+              course: data.course,
+            };
+            const newArray = { ...array, listOfStudents: [...array.listOfStudents, format] };
+            setArray(newArray);
+            localStorage.setItem("data", JSON.stringify(newArray));
+          }}
+        />
       </Card>
       <Main data={array} setData={setArray} />
     </S.Container>

@@ -29,7 +29,7 @@ const Main = ({ data, setData }) => {
     });
 
     setData({ ...data, listOfStudents: array });
-  }, []);
+  }, [data.listOfStudents.length]);
 
   return (
     <S.Container>
@@ -66,7 +66,7 @@ const Main = ({ data, setData }) => {
       <S.Separator />
       {data.listOfStudents?.map((aluno) => {
         return (
-          <S.WrapperInfo>
+          <S.WrapperInfo key={aluno.id}>
             <S.Info>{aluno.name}</S.Info>
             <S.Info width='16%'>
               {new Date().getFullYear() - new Date(aluno.age).getFullYear()}
@@ -77,7 +77,17 @@ const Main = ({ data, setData }) => {
 
             <S.ActionInfo>
               <FiEdit size={20} />
-              <FiTrash2 size={20} />
+              <FiTrash2
+                size={20}
+                onClick={() => {
+                  const newArray = {
+                    ...data,
+                    listOfStudents: data.listOfStudents.filter((item) => item.id !== aluno.id),
+                  };
+                  setData(newArray);
+                  localStorage.setItem("data", JSON.stringify(newArray));
+                }}
+              />
             </S.ActionInfo>
           </S.WrapperInfo>
         );

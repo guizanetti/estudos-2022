@@ -19,7 +19,6 @@ export const Header = styled.div`
 export const Title = styled.h3``;
 
 export const BoxHeader = styled.div`
-  width: 45%;
   display: flex;
   justify-content: space-between;
 `;
@@ -27,6 +26,7 @@ export const BoxHeader = styled.div`
 export const BoxInfo = styled.div`
   display: flex;
   align-items: center;
+  margin-left: 10px;
 `;
 
 export const Value = styled.p`
