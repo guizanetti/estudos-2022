@@ -29,7 +29,7 @@ export const BoxInfo = styled.div`
   align-items: center;
 `;
 
-export const Value = styled.text`
+export const Value = styled.p`
   margin-left: 5px;
   font-weight: 500;
 `;

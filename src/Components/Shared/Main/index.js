@@ -3,26 +3,33 @@ import * as S from "./styles";
 import { FiTrash2, FiEdit } from "react-icons/fi";
 
 const Main = ({ data, setData }) => {
-  let NewArray = [];
+  const verificator = (media) => {
+    if (media <= data.rules.reproved[1]) {
+      return "Reprovado";
+    }
+    if (media >= data.rules.pending[0] && media <= data.rules.pending[1]) {
+      return "Pendente";
+    }
+    if (media >= data.rules.approved[0]) {
+      return "Aprovado";
+    }
+  };
 
-  const media = (nota, id) => {
-    const result = nota.reduce((prev, value) => prev + value, 0);
-    const total = Math.round(result / nota.length);
-    NewArray = data.listOfStudents?.map((i) => (i.id === id ? { ...i, media: total } : i));
+  const getInfo = (item) => {
+    const result = item.score.reduce((prev, value) => prev + value, 0);
+    const media = Math.round(result / item.score.length);
 
-    return total;
+    return { ...item, media: media, status: verificator(media) };
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      setData({
-        ...data,
-        listOfStudents: NewArray,
-      });
-    }, 1000);
-  }, []);
+    let array = [];
+    data.listOfStudents.map((item) => {
+      array.push(getInfo(item));
+    });
 
-  console.log(data);
+    setData({ ...data, listOfStudents: array });
+  }, []);
 
   return (
     <S.Container>
@@ -57,20 +64,24 @@ const Main = ({ data, setData }) => {
       </S.WrapperSubtitle>
 
       <S.Separator />
-      {data.listOfStudents?.map((item) => (
-        <S.WrapperInfo>
-          <S.Info>{item.name}</S.Info>
-          <S.Info width='16%'>18</S.Info>
-          <S.Info width='6%'>{media(item.score, item.id)}</S.Info>
-          <S.Info width='16%'>{item.approved}</S.Info>
-          <S.Info width='16%'>{item.course}</S.Info>
+      {data.listOfStudents?.map((aluno) => {
+        return (
+          <S.WrapperInfo>
+            <S.Info>{aluno.name}</S.Info>
+            <S.Info width='16%'>
+              {new Date().getFullYear() - new Date(aluno.age).getFullYear()}
+            </S.Info>
+            <S.Info width='6%'>{aluno.media}</S.Info>
+            <S.Info width='16%'>{aluno.status}</S.Info>
+            <S.Info width='16%'>{aluno.course}</S.Info>
 
-          <S.ActionInfo>
-            <FiEdit size={20} />
-            <FiTrash2 size={20} />
-          </S.ActionInfo>
-        </S.WrapperInfo>
-      ))}
+            <S.ActionInfo>
+              <FiEdit size={20} />
+              <FiTrash2 size={20} />
+            </S.ActionInfo>
+          </S.WrapperInfo>
+        );
+      })}
     </S.Container>
   );
 };
